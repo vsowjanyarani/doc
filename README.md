@@ -132,6 +132,7 @@ Kubernetes Ingress is an API resource that allows you manage external or interna
  Prometheus is an opensource systems monitoring and alerting tool kit. It collects and stores metrics as time series data. PromQL is the query language can be used to query the metrics.
  
  Grafana is multi-platform open source and allows to visualize the data stored in Prometheus (and other sources). Grafana provides charts,graphs,alerts of the application when connected to supported datasource.
+ ![prom](https://github.com/vsowjanyarani/doc/blob/main/prometheus.png?raw=true:"prometheus")
  
   ## Components Used In Prometheus Server
   NodeExporter -its a deamonset ,it runs on every node in the eks cluster and stores metrics of the node in the prometheus server.
