@@ -1,4 +1,4 @@
-           AATMANI PROJECT DEVOPS DOCUMENTATION                  
+          AATMANI PROJECT DEVOPS DOCUMENTATION                  
 ## Introduction
 
    This documentation provides details of automatic build and deployment of the nodejs project, and the monitoring & log streaming setup.
@@ -20,7 +20,7 @@
 
  HashicropTerraform is an infrasture as code tool that lets us define both cloud and on-premise resources in human-readable configure files using hcl language. vpc,2subnets,eks-cluster with one nodegroup  (minimum 1 spot instance and maximum 5 spot instances) are provisioned using terraform.
  
- ![infra](https://github.com/vsowjanyarani/doc/blob/main/doc1.png?raw=true "Infra")
+ ![infra](https://github.com/vsowjanyarani/doc/blob/main/Untitled%20Diagram.drawio.png?raw=true"Infra")
  
   ## Install terraform
   Refer the following link to download and install terraform in ubuntu server.
@@ -38,52 +38,36 @@
     - terraform plan :- To view the plan of the terraform code before executing.
     - terraform apply :- To run the terraform code.
     - terraform destroy :- To destroy the infrastructure
+ ## SourceCodeManagement
+github is used to manage the source code.For every change made to git repo , PR will raised and team lead has to review it and merge into it.
+
+   ![pullrequestmerge](https://github.com/vsowjanyarani/doc/blob/main/git-pr.png?raw=true"sourcecodemanagement")
+  ## git repositories-
+   https://github.com/vsowjanyarani/aatmani-project - the sourcecode of the project available in this repository
+    https://github.com/vsowjanyarani/sowji-devops.git - all the files related to devops automation are available in this repository
+
    ## kubectl installation
  Refer the following link to  install kubectl on ubuntu server.
       https://docs.aws.amazon.com/eks/latest/userguide/install-kubectl.html  
-  ## Command to connect to eks-cluster
-    aws eks —region region-name update-kubeconfig —name cluster-name
+  
  ## Namespaces in eks-cluster
-   
-## SourceCodeManagement
-  ## git repositories-
-    https://github.com/vsowjanyarani/aatmani-project - sourcecode of the project available
-    https://github.com/vsowjanyarani/sowji-devops.git - all the files related to automation are available
- 
+   3 namespaces for 3 diffirent environments
+      1. dev
+      2. qa
+      3. prod
+    ![dev-qa-prod](https://github.com/vsowjanyarani/doc/blob/main/dev-qa-prod.png?raw=true"dev-qa-prod")
+
 ## DOCKER
    Dockerfile is to building image for for node project and run it as a container.
        . ubuntu is base image for dockerfile
        . application image is exposed to port 3000
+       ![dockerfile](https://github.com/vsowjanyarani/doc/blob/main/docker.png?raw=true"dockerfile")
    ## DockerInstallation
 Follow the below link to install docker on ubuntu server. Docker version is 20.10.17 .
                 https://docs.docker.com/engine/install/ubuntu/ 
  git url to see dockerfile - https://github.com/vsowjanyarani/sowji-devops.git
-##Push Image To Amazon Elastic Container Registry
+## Push Image To Amazon Elastic Container Registry
    push node image to AmazonECR
-
-## KUBERNETES
-  Kubernetes is a portable, extensible, open source platform for managing containerized workloads and services.
-  Containers are a good way to bundle and run your applications. In a production environment, you need to manage the containers that run the applications and ensure that there is no downtime. For example, if a container goes down, another container needs to start.
-  ## HElM
-    Helm is the package manager for kubernetes,that is chart. Helm charts are available in helm repositories.
-   ## Helm Installation
-Refer the following link to install helm on ubuntu server
-https://helm.sh/docs/intro/install/
- 
-  ## Creating Helm Chart
-Refer the following link for creating helm chart for node application.
-    https://phoenixnap.com/kb/create-helm-chart
-    Commands to create helm chart for the application
-- helm create node-helm
-- created dev-values.yaml ,qa-values.yaml and prod-values.yaml
-- dev-values.yaml file has replicas-1, repository url is node image location in ECR and service type is NodePort with exposed port 3000.
-- qa-values.yaml file has replicas-1, repository url is node image location in ECR and service type is NodePort with exposed port 3000.
-- prod-values.yaml file has replicas-2, repository url is node image location in ECR and service type is NodePort with exposed port 3000.
- ## Installing helmchart of node applicatiom in diffrent environments dev,qa,prod. 
-- helm install dev-helm nodehelm/ -n dev -f dev-values.yaml
- - helm install qa-helm nodehelm/ -n qa -f qa-values.yaml
-- helm install prod-helm nodehelm/ -n prod -f prod-values.yaml
-3 classic loadbalancers got created.
 
 ## Continuous Build and Continuous Deployment-Jenkins
 
@@ -94,8 +78,33 @@ Refer the following link for creating helm chart for node application.
    
  JenkinsPipelinejobs-
 - dev-jenkinsfile -   run a script which will pull node image from ECR and run the docker buid , upload the image to ECR. git integration with jenkins for trigger automaticaly when there is merge happens to main branch. integrated to slack channel to get alert on job fails.
-- qa-jenkinsfile -    run a script which will pull node image from ECR and run the docker buid , upload the image to ECR. git integration with jenkins for trigger automaticaly when there is merge happens to main branch. integrated to slack channel to get alert on job fails.
-- prod-jenkinfile -    run a script which will pull node image from ECR and run the docker buid , upload the image to ECR. git integration with jenkins for trigger automaticaly when there is merge happens to main branch. integrated to slack channel to get alert on job fails.
+- qa-jenkinsfile -    run a script which will pull node image that created in dev environment from ECR and run the docker buid , upload the image to ECR. git integration with jenkins for trigger automaticaly when there is merge happens to main branch. integrated to slack channel to get alert on job fails.
+- prod-jenkinfile -    run a script which will pull node image that created in qa environment from ECR and run the docker buid , upload the image to ECR. git integration with jenkins for trigger automaticaly when there is merge happens to main branch. integrated to slack channel to get alert on job fails.
+
+
+![cicd](https://github.com/vsowjanyarani/doc/blob/main/ci-cd2.png?raw=true"ci-cd")
+
+
+## KUBERNETES
+  Kubernetes is a portable, extensible, open source platform for managing containerized workloads and services.
+  Containers are a good way to bundle and run your applications. In a production environment, you need to manage the containers that run the applications and ensure that there is no downtime. For example, if a container goes down, another container needs to start.
+  ## HElM
+   Helm is the package manager for kubernetes. Helm charts are available in helm repositories.
+   ## Helm Installation
+Refer the following link to install helm on ubuntu server
+https://helm.sh/docs/intro/install/
+ 
+  ## Creating Helm Chart
+Refer the following link for creating helm chart for node application.
+    https://phoenixnap.com/kb/create-helm-chart
+    Commands to create helm chart for the application
+- create helm chart
+- created dev-values.yaml ,qa-values.yaml and prod-values.yaml
+- dev-values.yaml file has replicas-1, repository url is node image location in ECR and service type is NodePort with exposed port 3000.
+- qa-values.yaml file has replicas-1, repository url is node image location in ECR and service type is NodePort with exposed port 3000.
+- prod-values.yaml file has replicas-2, repository url is node image location in ECR and service type is NodePort with exposed port 3000.
+![helmchart](https://github.com/vsowjanyarani/doc/blob/main/Untitled%20Diagram.drawio%20(1).png?raw=true"helmchart")
+
 
 ## METRICSERVER
    The Kubernetes Metrics Server is an aggregator of resource usage data in your cluster, and it is not deployed by default in Amazon EKS clusters. The Metrics Server is commonly used by other Kubernetes add ons, such as the Horizontal Pod Autoscaler or the Kubernetes Dashboard. 
