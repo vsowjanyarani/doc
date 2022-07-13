@@ -156,9 +156,10 @@ Kubernetes Ingress is an API resource that allows you manage external or interna
  - setup logindetails for grafana
  - integrate the prometheus to grafana by creating datasource with promethues url 
  - create a dashboard using existing prometheus import code.
- ## LOGGING
+ ## KUBERNETES LOGGING
 ## ELASTICSEARCH ,FLUENT-BIT AND KIBANA (EFK)
    When running multiple services and applications on a Kubernetes cluster, a centralized, cluster-level logging stack can help you quickly sort through and analyze the heavy volume of log data produced by your Pods. One popular centralized logging solution is the Elasticsearch, Fluentbit, and Kibana (EFK) stack.
+   
     ![efk](https://github.com/vsowjanyarani/doc/blob/main/efk.png?raw=true:"EFK")
   ## ElasticSearch
         
