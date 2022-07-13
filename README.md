@@ -1,7 +1,9 @@
-      AATMANI PROJECT DEVOPS DOCUMENTATION                  
+       AATMANI PROJECT DEVOPS DOCUMENTATION                  
 ## Introduction
 
    This documentation provides details of automatic build and deployment of the nodejs project, and the monitoring & log streaming setup.
+ ## NodeJsApplication Architecture:
+ ![cicd](https://github.com/vsowjanyarani/doc/blob/main/main-image.png?raw=true"ci-cd")
     
 ## Tools used
  - Infrastructure as code - Terraform
@@ -81,8 +83,8 @@ Follow the below link to install docker on ubuntu server. Docker version is 20.1
 - qa-jenkinsfile -    run a script which will pull node image that created in dev environment from ECR and run the docker buid , upload the image to ECR. git integration with jenkins for trigger automaticaly when there is merge happens to main branch. integrated to slack channel to get alert on job fails.
 - prod-jenkinfile -    run a script which will pull node image that created in qa environment from ECR and run the docker buid , upload the image to ECR. git integration with jenkins for trigger automaticaly when there is merge happens to main branch. integrated to slack channel to get alert on job fails.
 
+![jenkins](https://github.com/vsowjanyarani/doc/blob/main/jenkinsjob3.png?raw=true"jenkinsjobs")
 
-![cicd](https://github.com/vsowjanyarani/doc/blob/main/main-image.png?raw=true"ci-cd")
 
 
 ## KUBERNETES
@@ -123,8 +125,9 @@ Kubernetes Ingress is an API resource that allows you manage external or interna
  Deploying the cluster autoscaler using the folllowing link
   https://docs.aws.amazon.com/eks/latest/userguide/autoscaling.html
  ## Enabling hpa in prod environment
- A HorizontalPodAutoscaler (HPA for short) automatically updates a workload resource (such as a Deployment or StatefulSet), with the aim of automatically scaling the workload to match demand.
- Horizontal scaling means that the response to increased load is to deploy more Pods.
+ A HorizontalPodAutoscaler (HPA) automatically updates a workload resource (such as a Deployment or StatefulSet), with the aim of automatically scaling the workload to match demand.
+ Horizontal scaling means that the response to increased load is to deploy more Pods. 
+ HPA is enabled in prod environment by increase and decrease the number of replicas (by updating the Deployment) to maintain an average CPU utilization across all Pods of 50%, minimum 1 instance and maximum 10 instances.
  ## PROMETHEUS AND GRAFANA
  Prometheus is an opensource systems monitoring and alerting tool kit. It collects and stores metrics as time series data. PromQL is the query language can be used to query the metrics.
  
