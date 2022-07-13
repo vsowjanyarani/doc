@@ -160,7 +160,7 @@ Kubernetes Ingress is an API resource that allows you manage external or interna
 ## ELASTICSEARCH ,FLUENT-BIT AND KIBANA (EFK)
    When running multiple services and applications on a Kubernetes cluster, a centralized, cluster-level logging stack can help you quickly sort through and analyze the heavy volume of log data produced by your Pods. One popular centralized logging solution is the Elasticsearch, Fluentbit, and Kibana (EFK) stack.
    
-    ![efk](https://github.com/vsowjanyarani/doc/blob/main/efk.png?raw=true:"EFK")
-    
+   ![efk](https://github.com/vsowjanyarani/doc/blob/main/efk.png?raw=true:"EFK")
+   
   ## ElasticSearch
         
