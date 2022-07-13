@@ -1,7 +1,7 @@
-        AATMANI PROJECT BUILD AND DEPLOYMENT AUTOMATION                        
+           AATMANI PROJECT DEVOPS DOCUMENTATION                  
 ## Introduction
 
-   This documentation tells automatic build and deployment of the nodejs project.Finally monitoring the application in grafana and log streaming.
+   This documentation provides details of automatic build and deployment of the nodejs project, and the monitoring & log streaming setup.
     
 ## Tools used
  - Infrastructure as code - Terraform
@@ -18,18 +18,19 @@
  - one ubuntu virtual machine on aws. t3-medium
 ## TERRAFORM
 
- HashicropTerraform is an infrasture as code tool that lets us define both cloud and on-premise resources in human-readable configure files using hcl language. The main goal of using terraform is evaluating the existing terraform code i.e reusing the code  and the automation of infrastructure. 
+ HashicropTerraform is an infrasture as code tool that lets us define both cloud and on-premise resources in human-readable configure files using hcl language. vpc,2subnets,eks-cluster with one nodegroup  (minimum 1 spot instance and maximum 5 spot instances) are provisioned using terraform.
+ 
+ ![infra](https://github.com/vsowjanyarani/doc/blob/main/doc1.png?raw=true "Infra")
+ 
   ## Install terraform
   Refer the following link to download and install terraform in ubuntu server.
       https://www.terraform.io/downloads
   ## AWS-CLI Installation
    Refer the following link for Installing aws-cli on ubuntu server.
    https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html
-  ## command to configure aws account on ubuntu server
-      aws configure
    ## Provisioning The Infrastructure 
    -  terraform working directory
-       -  main.tf file has terraform code to create a vpc, one public subnet and one private subnet. all environment variables used in main.tf file ,declared in another file variables.tf file.
+       -  main.tf file has terraform code to create a vpc, one public subnet and one private subnet. all environment variables used in main.tf file ,declared in another file i.e variables.tf file.
    - terraform-eks working directory
       - ekscluster.tf has terraform code to create iam roles ,eks cluster and one worker nodegroup with minimun 1 spot machine and max 5 spot machines.all environment variables used in ekscluster.tf file ,declared in another file vars.tf file.
    ## Commands used to run the terraform code
@@ -40,12 +41,10 @@
    ## kubectl installation
  Refer the following link to  install kubectl on ubuntu server.
       https://docs.aws.amazon.com/eks/latest/userguide/install-kubectl.html  
-  ## Commands to connect to eks-cluster
+  ## Command to connect to eks-cluster
     aws eks —region region-name update-kubeconfig —name cluster-name
- ## Commands to create 3 namespaces in eks-cluster
-    kubectl create namespace dev
-    kubectl create namespace qa
-    kubectl create namespace prod
+ ## Namespaces in eks-cluster
+   
 ## SourceCodeManagement
   ## git repositories-
     https://github.com/vsowjanyarani/aatmani-project - sourcecode of the project available
@@ -133,15 +132,18 @@ Kubernetes Ingress is an API resource that allows you manage external or interna
   https://artifacthub.io/packages/helm/grafana/grafana
   ## Prometheus SetUp
   Step 1: Create alerting rules in Prometheus
-  - rules.yml - to specify alerting rules
+  - rules.yml - to specify alerting rules(Rules used are Node down,Instance down,kube pod crash looping,low memory)
   - prometheus.yml - promethues configuration file
   -  configuring rules to promethueus.yml file
   
    Step 2: Set up Alertmanager
   - alertmanager.yml - integrate slack channel(#testing) to prometheus alerts in alertmanager.yml file
+  
   ## Grafana SetUp
  - setup logindetails for grafana
  - integrate the prometheus to grafana by creating datasource with promethues url 
  - create a dashboard using existing prometheus import code.
  ## LOGGING
 ## ELASTICSEARCH ,FLUENT-BIT AND KIBANA (EFK)
+   When running multiple services and applications on a Kubernetes cluster, a centralized, cluster-level logging stack can help you quickly sort through and analyze the heavy volume of log data produced by your Pods. One popular centralized logging solution is the Elasticsearch, Fluentbit, and Kibana (EFK) stack.
+  ## ElasticSearch
