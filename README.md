@@ -1,7 +1,7 @@
-       AATMANI PROJECT DEVOPS DOCUMENTATION                  
+       NODEJS PROJECT DEVOPS DOCUMENTATION                  
 ## Introduction
 
-   This documentation provides details of automatic build and deployment of the nodejs project, and the monitoring & log streaming setup.
+   This documentation provides details of automatic build and deployment of the nodejs project, and the kubernetes monitoring & log streaming setup.
  ## NodeJsApplication Architecture:
  ![cicd](https://github.com/vsowjanyarani/doc/blob/main/main-image.png?raw=true"ci-cd")
     
@@ -20,16 +20,15 @@
  - one ubuntu virtual machine on aws. t3-medium
 ## TERRAFORM
 
- HashicropTerraform is an infrasture as code tool that lets us define both cloud and on-premise resources in human-readable configure files using hcl language. vpc,2subnets,eks-cluster with one nodegroup  (minimum 1 spot instance and maximum 5 spot instances) are provisioned using terraform.
+ HashicropTerraform is an infrasture as code tool that lets us define both cloud and on-premise resources in human-readable configure files using hcl language. 
+ one vpc,2subnets,eks-cluster with one nodegroup  (minimum 1 spot instance and maximum 5 spot instances) are provisioned using terraform.
  
  ![infra](https://github.com/vsowjanyarani/doc/blob/main/Untitled%20Diagram.drawio.png?raw=true"Infra")
  
   ## Install terraform
   Refer the following link to download and install terraform in ubuntu server.
       https://www.terraform.io/downloads
-  ## AWS-CLI Installation
-   Refer the following link for Installing aws-cli on ubuntu server.
-   https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html
+ 
    ## Provisioning The Infrastructure 
    -  terraform working directory
        -  main.tf file has terraform code to create a vpc, one public subnet and one private subnet. all environment variables used in main.tf file ,declared in another file i.e variables.tf file.
@@ -40,13 +39,16 @@
     - terraform plan :- To view the plan of the terraform code before executing.
     - terraform apply :- To run the terraform code.
     - terraform destroy :- To destroy the infrastructure
+    ## AWS-CLI Installation
+   Refer the following link for Installing aws-cli on ubuntu server
+    https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html
  ## SourceCodeManagement
-github is used to manage the source code.For every change made to git repo , PR will raised and team lead has to review it and merge into it.
+  GIthub offers the distributed version control and source code management (SCM) functionality of Git.For every change made to git repo , PR will raised and team lead has to review it and merge into it.
 
    ![pullrequestmerge](https://github.com/vsowjanyarani/doc/blob/main/git-pr.png?raw=true"sourcecodemanagement")
   ## git repositories-
-   https://github.com/vsowjanyarani/aatmani-project - the sourcecode of the project available in this repository
-    https://github.com/vsowjanyarani/sowji-devops.git - all the files related to devops automation are available in this repository
+   https://github.com/vsowjanyarani/aatmani-project - the sourcecode of the project available in this repository.
+   https://github.com/vsowjanyarani/sowji-devops.git - all the files related to devops automation are available in this repository.
 
    ## kubectl installation
  Refer the following link to  install kubectl on ubuntu server.
@@ -62,14 +64,13 @@ github is used to manage the source code.For every change made to git repo , PR 
 ## DOCKER
    Dockerfile is to building image for for node project and run it as a container.
        . ubuntu is base image for dockerfile
-       . application image is exposed to port 3000
+       . nodejs application image is exposed to port 3000
        ![dockerfile](https://github.com/vsowjanyarani/doc/blob/main/docker.png?raw=true"dockerfile")
    ## DockerInstallation
 Follow the below link to install docker on ubuntu server. Docker version is 20.10.17 .
                 https://docs.docker.com/engine/install/ubuntu/ 
  git url to see dockerfile - https://github.com/vsowjanyarani/sowji-devops.git
-## Push Image To Amazon Elastic Container Registry
-   push node image to AmazonECR
+ 
 
 ## Continuous Build and Continuous Deployment-Jenkins
 
@@ -80,7 +81,7 @@ Follow the below link to install docker on ubuntu server. Docker version is 20.1
    
  JenkinsPipelinejobs-
 - dev-jenkinsfile -   run a script which will pull node image from ECR and run the docker buid , upload the image to ECR. git integration with jenkins for trigger automaticaly when there is merge happens to main branch. integrated to slack channel to get alert on job fails.
-- qa-jenkinsfile -    run a script which will pull node image that created in dev environment from ECR and run the docker buid , upload the image to ECR. git integration with jenkins for trigger automaticaly when there is merge happens to main branch. integrated to slack channel to get alert on job fails.
+- qa-jenkinsfile -    run a script which will pull node image that created in dev environment from ECR and run the docker buid , upload the image to ECR. git integration with jenkins for trigger automaticaly when there is merge fhappens to main branch. integrated to slack channel to get alert on job fails.
 - prod-jenkinfile -    run a script which will pull node image that created in qa environment from ECR and run the docker buid , upload the image to ECR. git integration with jenkins for trigger automaticaly when there is merge happens to main branch. integrated to slack channel to get alert on job fails.
 
 ![jenkins](https://github.com/vsowjanyarani/doc/blob/main/jenkinsjob3.png?raw=true"jenkinsjobs")
@@ -113,21 +114,17 @@ Refer the following link for creating helm chart for node application.
    INSTALLATION:
      Refer the following link
      https://docs.aws.amazon.com/eks/latest/userguide/metrics-server.html
-## AWS INGRESS CONTROLLER
-Kubernetes Ingress is an API resource that allows you manage external or internal HTTP(S) access to Kubernetes services running in a cluster.The open source AWS ALB Ingress controller triggers the creation of an ALB and the necessary supporting AWS resources whenever a Kubernetes user declares an Ingress resource in the cluster.
-  The Ingress resource uses the ALB to route HTTP(S) traffic to different endpoints within the cluster. The AWS ALB Ingress controller works on any Kubernetes cluster including Amazon Elastic Kubernetes Service (Amazon EKS).
-  
-  Refer the following link to deploy awsingresscontroller
-  https://aws.amazon.com/blogs/opensource/kubernetes-ingress-aws-alb-ingress-controller/
   
  ## CLUSTER AUTOSCALING
  The Kubernetes Cluster Autoscaler automatically adjusts the number of nodes in your cluster when pods fail or are rescheduled onto other nodes.
  Deploying the cluster autoscaler using the folllowing link
   https://docs.aws.amazon.com/eks/latest/userguide/autoscaling.html
+  
  ## Enabling hpa in prod environment
  A HorizontalPodAutoscaler (HPA) automatically updates a workload resource (such as a Deployment or StatefulSet), with the aim of automatically scaling the workload to match demand.
  Horizontal scaling means that the response to increased load is to deploy more Pods. 
  HPA is enabled in prod environment by increase and decrease the number of replicas (by updating the Deployment) to maintain an average CPU utilization across all Pods of 50%, minimum 1 instance and maximum 10 instances.
+ 
  ## PROMETHEUS AND GRAFANA
  Prometheus is an opensource systems monitoring and alerting tool kit. It collects and stores metrics as time series data. PromQL is the query language can be used to query the metrics.
  
@@ -135,9 +132,9 @@ Kubernetes Ingress is an API resource that allows you manage external or interna
  ![prom](https://github.com/vsowjanyarani/doc/blob/main/prome.png?raw=true:"prometheus")
  
   ## Components Used In Prometheus Server
-  NodeExporter -its a deamonset ,it runs on every node in the eks cluster and stores metrics of the node in the prometheus server.
+  NodeExporter -its a deamonset ,it runs on every node in the eks cluster and stores metrics of the node in the prometheus server database.
   
-  AlertManager- it will handle the alerts.
+  AlertManager- it will handle the alerts rules.
   ## Installation
   Create a namespace monitoring in eks-cluster and deploy Promethues and grafana using promethushelm repository and grafanahelm repository from helm community.
   Refer the below links
@@ -147,7 +144,7 @@ Kubernetes Ingress is an API resource that allows you manage external or interna
   Step 1: Create alerting rules in Prometheus
   - rules.yml - to specify alerting rules(Rules used are Node down,Instance down,kube pod crash looping,low memory)
   - prometheus.yml - promethues configuration file
-  -  configuring rules to promethueus.yml file
+  -  configuring rules.yml file to promethueus.yml file
   
    Step 2: Set up Alertmanager
   - alertmanager.yml - integrate slack channel(#testing) to prometheus alerts in alertmanager.yml file
@@ -156,6 +153,7 @@ Kubernetes Ingress is an API resource that allows you manage external or interna
  - setup logindetails for grafana
  - integrate the prometheus to grafana by creating datasource with promethues url 
  - create a dashboard using existing prometheus import code.
+ 
  ## KUBERNETES LOGGING
 ## ELASTICSEARCH ,FLUENT-BIT AND KIBANA (EFK)
    When running multiple services and applications on a Kubernetes cluster, a centralized, cluster-level logging stack can help you quickly sort through and analyze the heavy volume of log data produced by your Pods. One popular centralized logging solution is the Elasticsearch, Fluentbit, and Kibana (EFK) stack.
