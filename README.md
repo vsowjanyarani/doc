@@ -159,17 +159,18 @@ Refer the following link for creating helm chart for node application.
  HPA is enabled in prod environment by increase and decrease the number of replicas (by updating the Deployment) to maintain an average CPU utilization across all Pods of 50%, minimum 1 instance and maximum 10 instances.
  
  # STAGE6
- ## PROMETHEUS AND GRAFANA
+ ## KUBERNETES MONITORING
+ #### PROMETHEUS AND GRAFANA
  Prometheus is an opensource systems monitoring and alerting tool kit. It collects and stores metrics as time series data. PromQL is the query language can be used to query the metrics.
  
  Grafana is multi-platform open source and allows to visualize the data stored in Prometheus (and other sources). Grafana provides charts,graphs,alerts of the application when connected to supported datasource.
  ![prom](https://github.com/vsowjanyarani/doc/blob/main/prome.png?raw=true:"prometheus")
  
-  #### Components Used In Prometheus Server
+  ##### Components Used In Prometheus Server
   NodeExporter -its a deamonset ,it runs on every node in the eks cluster and stores metrics of the node in the prometheus server database.
   
   AlertManager- it will handle the alerts rules.
-  #### Installation
+  ##### Installation
   Create a namespace monitoring in eks-cluster and deploy Promethues and grafana using promethushelm repository and grafanahelm repository from helm community.
   Refer the below links
   
