@@ -78,7 +78,9 @@
      ![dockerfile](https://github.com/vsowjanyarani/doc/blob/main/docker.png?raw=true"dockerfile")
    ### DockerInstallation
 Follow the below link to install docker on ubuntu server. Docker version is 20.10.17 .
+                
                 https://docs.docker.com/engine/install/ubuntu/ 
+                
  git url to see dockerfile - https://github.com/vsowjanyarani/sowji-devops.git
  
 # STAGE4
@@ -86,14 +88,17 @@ Follow the below link to install docker on ubuntu server. Docker version is 20.1
 
  The leading open source automation server, Jenkins provides hundreds of plugins to support building, deploying and automating any project
  ### jenkinsInstallation:
-  Refer the follwing link to install jenkins
+  Refer the follwing link to install jenkins  
+  
    https://www.jenkins.io/doc/book/installing/linux/
    
  ##### JenkinsPipelinejobs-
  dev-jenkinsJob -  
-          This job has pipeline script to build an image and run the image,upload the image to ECR,integrated git with jenkins for trigger automaticaly when there is merge happens to main branch,Integrated to slack channel to get alert on job fails and deployed 1 replica with helm install and dev-values.yaml file
+          This job has pipeline script to build an image and run the image,upload the image to ECR,integrated git with jenkins for trigger automaticaly when there is merge happens to main branch,Integrated to slack channel to get alert on job fails and deployed 1 replica with helm install and dev-values.yaml file.
+          
 qa-jenkinsJob - 
-         This job has pipeline script which will pull node image that created in dev-jenkinsjob from ECR ,attaching new tag and upload the image to ECR. Integrated to git with jenkins to trigger automaticaly when there is merge happens to main branch ,integrated to slack channel to get alert on job fails and deployed 1 replica with helm install and qa-values.yaml file
+         This job has pipeline script which will pull node image that created in dev-jenkinsjob from ECR ,attaching new tag and upload the image to ECR. Integrated to git with jenkins to trigger automaticaly when there is merge happens to main branch ,integrated to slack channel to get alert on job fails and deployed 1 replica with helm install and qa-values.yaml file.
+         
  prod-jenkinJob -  
          This job has pipeline script which will pull node image that created in qa environment from ECR and attaching new tag and upload the image to ECR. Integrated git with jenkins to trigger automaticaly when there is merge happens to main branch,integrated to slack channel to get alert on job fails and and deployed 1 replica with helm install and dev-values.yaml file.
 
@@ -115,10 +120,14 @@ https://helm.sh/docs/intro/install/
 Refer the following link for creating helm chart for node application.
 
     https://phoenixnap.com/kb/create-helm-chart
-- created dev-values.yaml ,qa-values.yaml and prod-values.yaml
-- dev-values.yaml file has replicas-1, repository url is node image location in ECR and service type is NodePort with exposed port 3000.
-- qa-values.yaml file has replicas-1, repository url is node image location in ECR and service type is NodePort with exposed port 3000.
-- prod-values.yaml file has replicas-2, repository url is node image location in ECR and service type is NodePort with exposed port 3000.
+- created dev-values.yaml ,qa-values.yaml and prod-values.yaml 
+
+- dev-values.yaml file has replicas-1, repository url is node image location in ECR and service type is NodePort with exposed port 3000
+
+- qa-values.yaml file has replicas-1, repository url is node image location in ECR and service type is NodePort with exposed port 3000
+
+- prod-values.yaml file has replicas-2, repository url is node image location in ECR and service type is NodePort with exposed port 3000
+- 
 ![helmchart](https://github.com/vsowjanyarani/doc/blob/main/Untitled%20Diagram.drawio%20(1).png?raw=true"helmchart")
 
 
@@ -155,6 +164,7 @@ Refer the following link for creating helm chart for node application.
   Refer the below links
   
   https://artifacthub.io/packages/helm/prometheus-community/prometheus
+  
   https://artifacthub.io/packages/helm/grafana/grafana
   #### Prometheus SetUp
   Step 1: Create alerting rules in Prometheus
@@ -183,6 +193,7 @@ Refer the following link for creating helm chart for node application.
    Refer the following link for installation on ubuntu server
    
        https://linuxize.com/post/how-to-install-elasticsearch-on-ubuntu-20-04/
+       
  ### FLUENT-BIT
  Fluent Bit is a lightweight log processor and forwarder that allows you to collect data and logs from different sources, unify them, and send them to multiple destinations.
    Here fluentbit stores the log data to elasticsearch data source. fulent-bit runs as a deamonset in kubernetes cluster.so that it can collect log information from every node
