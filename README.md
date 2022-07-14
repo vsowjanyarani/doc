@@ -37,11 +37,10 @@
       - ekscluster.tf has terraform code to create iam roles ,eks cluster and one worker nodegroup with minimun 1 spot machine and max 5 spot machines
       - vars.tf file has all environment variables used in ekscluster.tf
    ### Commands used to run the terraform code
-   - terraform init :- Initialize the terraform working directory .
-   
-    - terraform plan :- To view the plan of the terraform code before executing.
-    - terraform apply :- To run the terraform code.
-    - terraform destroy :- To destroy the infrastructure
+      terraform init :-    Initialize the terraform working directory .
+      terraform plan :-    To view the plan of the terraform code before executing.
+      terraform apply :-   To run the terraform code.
+      terraform destroy:-  To destroy the infrastructure
     
 ## AWS-CLI INSTALLATION
    Refer the following link for Installing aws-cli on ubuntu server
@@ -67,9 +66,12 @@
 
 ## DOCKER
    Dockerfile is to building image for for node project and run it as a container.
+   
        . ubuntu is base image for dockerfile
+       
        . nodejs application image is exposed to port 3000
-       ![dockerfile](https://github.com/vsowjanyarani/doc/blob/main/docker.png?raw=true"dockerfile")
+       
+     ![dockerfile](https://github.com/vsowjanyarani/doc/blob/main/docker.png?raw=true"dockerfile")
    ### DockerInstallation
 Follow the below link to install docker on ubuntu server. Docker version is 20.10.17 .
                 https://docs.docker.com/engine/install/ubuntu/ 
