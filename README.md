@@ -79,7 +79,9 @@
        
        . nodejs application image is exposed to port 3000
        
-     ![dockerfile](https://github.com/vsowjanyarani/doc/blob/main/docker.png?raw=true"dockerfile")
+       
+ ![dockerfile](https://github.com/vsowjanyarani/doc/blob/main/docker.png?raw=true"dockerfile")
+     
    ### DockerInstallation
     Follow the below link to install docker on ubuntu server. Docker version is 20.10.17 .
                 
@@ -132,7 +134,8 @@ Refer the following link for creating helm chart for node application.
 - qa-values.yaml file has replicas-1, repository url is node image location in ECR and service type is NodePort with exposed port 3000
 
 - prod-values.yaml file has replicas-2, repository url is node image location in ECR and service type is NodePort with exposed port 3000
-- 
+3 classic load balancers got created in each environment
+
 ![helmchart](https://github.com/vsowjanyarani/doc/blob/main/Untitled%20Diagram.drawio%20(1).png?raw=true"helmchart")
 
 
