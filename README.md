@@ -1,4 +1,4 @@
-                                   # NODEJS PROJECT DEVOPS DOCUMENTATION             
+                                    NODEJS PROJECT DEVOPS DOCUMENTATION             
 ## INTRODUCTION
 
    This documentation provides details of automatic build and deployment of the nodejs project, and the kubernetes monitoring & log streaming setup.
@@ -17,7 +17,9 @@
  - logs monitoring tools - Elasticsearch,Fluent-Bit,Kibana
  
 ## PRE-REQUISITES
- - one ubuntu virtual machine on aws. t3-medium
+ - one ubuntu virtual machine on aws of type t3-medium
+ - one ubuntu virtual machine on aws of type t2-medium for installing elasticsearch and kibana
+# STAGE1
 ## TERRAFORM
 
  HashicropTerraform is an infrasture as code tool that lets us define both cloud and on-premise resources in human-readable configure files using hcl language. 
@@ -53,6 +55,7 @@
    https://github.com/vsowjanyarani/aatmani-project - the sourcecode of the project available in this repository.
    https://github.com/vsowjanyarani/sowji-devops.git - all the files related to devops automation are available in this repository.
 
+# STAGE2
    ## kUBECTL INSTALLATION
  Refer the following link to  install kubectl on ubuntu server.
       https://docs.aws.amazon.com/eks/latest/userguide/install-kubectl.html  
@@ -63,7 +66,8 @@
       2. qa
       3. prod
     ![dev-qa-prod](https://github.com/vsowjanyarani/doc/blob/main/dev-qa-prod.png?raw=true"dev-qa-prod")
-
+    
+# STAGE3
 ## DOCKER
    Dockerfile is to building image for for node project and run it as a container.
    
@@ -77,7 +81,7 @@ Follow the below link to install docker on ubuntu server. Docker version is 20.1
                 https://docs.docker.com/engine/install/ubuntu/ 
  git url to see dockerfile - https://github.com/vsowjanyarani/sowji-devops.git
  
-
+# STAGE4
 ## CONTINUOUS BUILD AND CONTINUOUS DEPLOYMENT - JENKINS
 
  The leading open source automation server, Jenkins provides hundreds of plugins to support building, deploying and automating any project
@@ -86,14 +90,17 @@ Follow the below link to install docker on ubuntu server. Docker version is 20.1
    https://www.jenkins.io/doc/book/installing/linux/
    
  ##### JenkinsPipelinejobs-
-- dev-jenkinsJob-  This job has pipeline script to build an image and run the image,upload the image to ECR,integrated git with jenkins for trigger automaticaly when there is merge happens to main branch,Integrated to slack channel to get alert on job fails and deployed 1 replica with helm install and dev-values.yaml file
-- qa-jenkinsJob -  This job has pipeline script which will pull node image that created in dev-jenkinsjob from ECR ,attaching new tag and upload the image to ECR. Integrated to git with jenkins to trigger automaticaly when there is merge happens to main branch ,integrated to slack channel to get alert on job fails and deployed 1 replica with helm install and qa-values.yaml file
-- prod-jenkinJob -  This job has pipeline script which will pull node image that created in qa environment from ECR and attaching new tag and upload the image to ECR. Integrated git with jenkins to trigger automaticaly when there is merge happens to main branch,integrated to slack channel to get alert on job fails and and deployed 1 replica with helm install and dev-values.yaml file.
+ dev-jenkinsJob -  
+          This job has pipeline script to build an image and run the image,upload the image to ECR,integrated git with jenkins for trigger automaticaly when there is merge happens to main branch,Integrated to slack channel to get alert on job fails and deployed 1 replica with helm install and dev-values.yaml file
+qa-jenkinsJob - 
+         This job has pipeline script which will pull node image that created in dev-jenkinsjob from ECR ,attaching new tag and upload the image to ECR. Integrated to git with jenkins to trigger automaticaly when there is merge happens to main branch ,integrated to slack channel to get alert on job fails and deployed 1 replica with helm install and qa-values.yaml file
+ prod-jenkinJob -  
+         This job has pipeline script which will pull node image that created in qa environment from ECR and attaching new tag and upload the image to ECR. Integrated git with jenkins to trigger automaticaly when there is merge happens to main branch,integrated to slack channel to get alert on job fails and and deployed 1 replica with helm install and dev-values.yaml file.
 
 ![jenkins](https://github.com/vsowjanyarani/doc/blob/main/jenkinsjob3.png?raw=true"jenkinsjobs")
 
 
-
+# STAGE5
 ## KUBERNETES
   Kubernetes is a portable, extensible, open source platform for managing containerized workloads and services.
   Containers are a good way to bundle and run your applications. In a production environment, you need to manage the containers that run the applications and ensure that there is no downtime. For example, if a container goes down, another container needs to start.
@@ -128,7 +135,7 @@ Refer the following link for creating helm chart for node application.
  A HorizontalPodAutoscaler (HPA) automatically updates a workload resource (such as a Deployment or StatefulSet), with the aim of automatically scaling the workload to match demand.
  Horizontal scaling means that the response to increased load is to deploy more Pods. 
  HPA is enabled in prod environment by increase and decrease the number of replicas (by updating the Deployment) to maintain an average CPU utilization across all Pods of 50%, minimum 1 instance and maximum 10 instances.
- 
+ # STAGE6
  ## PROMETHEUS AND GRAFANA
  Prometheus is an opensource systems monitoring and alerting tool kit. It collects and stores metrics as time series data. PromQL is the query language can be used to query the metrics.
  
@@ -157,7 +164,7 @@ Refer the following link for creating helm chart for node application.
  - setup logindetails for grafana
  - integrate the prometheus to grafana by creating datasource with promethues url 
  - create a dashboard using existing prometheus import code.
- 
+ # STAGE7
  ## KUBERNETES LOGGING
 #### ELASTICSEARCH ,FLUENT-BIT AND KIBANA (EFK)
    Securely and reliably search, analyze, and visualize your data.
