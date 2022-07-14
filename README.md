@@ -41,10 +41,10 @@
       - vars.tf file has all environment variables used in ekscluster.tf
    ### Commands used to run the terraform code
    
-     terraform init :-    Initialize the terraform working directory .
-     terraform plan :-    To view the plan of the terraform code before executing.
-     terraform apply :-   To run the terraform code.
-     terraform destroy:-  To destroy the infrastructure
+   - terraform init :-    Initialize the terraform working directory .
+   - terraform plan :-    To view the plan of the terraform code before executing.
+   - terraform apply :-   To run the terraform code.
+   - terraform destroy:-  To destroy the infrastructure
     
 ## AWS-CLI INSTALLATION
    Refer the following link for Installing aws-cli on ubuntu server
@@ -103,10 +103,10 @@
  dev-jenkinsJob -  
           This job has pipeline script to build an image and run the image,upload the image to ECR,integrated git with jenkins for trigger automaticaly when there is merge happens to main branch,Integrated to slack channel to get alert on job fails and deployed 1 replica with helm install and dev-values.yaml file.
           
-qa-jenkinsJob - 
-         This job has pipeline script which will pull node image that created in dev-jenkinsjob from ECR ,attaching new tag and upload the image to ECR. Integrated to git with jenkins to trigger automaticaly when there is merge happens to main branch ,integrated to slack channel to get alert on job fails and deployed 1 replica with helm install and qa-values.yaml file.
+ qa-jenkinsJob -  
+          This job has pipeline script which will pull node image that created in dev-jenkinsjob from ECR ,attaching new tag and upload the image to ECR. Integrated to git with jenkins to trigger automaticaly when there is merge happens to main branch ,integrated to slack channel to get alert on job fails and deployed 1 replica with helm install and qa-values.yaml file.
          
-prod-jenkinJob -  
+ prod-jenkinJob -  
          This job has pipeline script which will pull node image that created in qa environment from ECR and attaching new tag and upload the image to ECR. Integrated git with jenkins to trigger automaticaly when there is merge happens to main branch,integrated to slack channel to get alert on job fails and and deployed 1 replica with helm install and dev-values.yaml file.
 
 ![jenkins](https://github.com/vsowjanyarani/doc/blob/main/jenkinsjob3.png?raw=true"jenkinsjobs")
