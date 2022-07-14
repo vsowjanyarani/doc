@@ -85,7 +85,7 @@
    ### DockerInstallation
     Follow the below link to install docker on ubuntu server. Docker version is 20.10.17 .
                 
-        https://docs.docker.com/engine/install/ubuntu/ 
+   https://docs.docker.com/engine/install/ubuntu/ 
                 
  git url to see dockerfile - https://github.com/vsowjanyarani/sowji-devops.git
  
@@ -105,7 +105,7 @@
 qa-jenkinsJob - 
          This job has pipeline script which will pull node image that created in dev-jenkinsjob from ECR ,attaching new tag and upload the image to ECR. Integrated to git with jenkins to trigger automaticaly when there is merge happens to main branch ,integrated to slack channel to get alert on job fails and deployed 1 replica with helm install and qa-values.yaml file.
          
- prod-jenkinJob -  
+prod-jenkinJob -  
          This job has pipeline script which will pull node image that created in qa environment from ECR and attaching new tag and upload the image to ECR. Integrated git with jenkins to trigger automaticaly when there is merge happens to main branch,integrated to slack channel to get alert on job fails and and deployed 1 replica with helm install and dev-values.yaml file.
 
 ![jenkins](https://github.com/vsowjanyarani/doc/blob/main/jenkinsjob3.png?raw=true"jenkinsjobs")
@@ -134,7 +134,7 @@ Refer the following link for creating helm chart for node application.
 - qa-values.yaml file has replicas-1, repository url is node image location in ECR and service type is NodePort with exposed port 3000
 
 - prod-values.yaml file has replicas-2, repository url is node image location in ECR and service type is NodePort with exposed port 3000
-3 classic load balancers got created in each environment
+- 3 classic load balancers got created in each environment
 
 ![helmchart](https://github.com/vsowjanyarani/doc/blob/main/Untitled%20Diagram.drawio%20(1).png?raw=true"helmchart")
 
@@ -176,6 +176,7 @@ Refer the following link for creating helm chart for node application.
     
   
     https://artifacthub.io/packages/helm/grafana/grafana
+    
   #### Prometheus SetUp
   Step 1: Create alerting rules in Prometheus
   - rules.yml - to specify alerting rules(Rules used are Node down,Instance down,kube pod crash looping,low memory)
