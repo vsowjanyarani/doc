@@ -1,4 +1,5 @@
-                                    NODEJS PROJECT DEVOPS DOCUMENTATION             
+                                   NODEJS PROJECT DEVOPS DOCUMENTATION    
+                                   
 ## INTRODUCTION
 
    This documentation provides details of automatic build and deployment of the nodejs project, and the kubernetes monitoring & log streaming setup.
