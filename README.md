@@ -29,6 +29,7 @@
  
   ### Install terraform
   Refer the following link to download and install terraform in ubuntu server.
+  
       https://www.terraform.io/downloads
  
    ### Provisioning The Infrastructure 
@@ -46,6 +47,7 @@
     
 ## AWS-CLI INSTALLATION
    Refer the following link for Installing aws-cli on ubuntu server
+   
     https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html
  ## SOURCE CODE MANAGEMENT
   GIthub offers the distributed version control and source code management (SCM) functionality of Git.For every change made to git repo , PR will raised and team lead has to review it and merge into it.
@@ -148,6 +150,7 @@ Refer the following link for creating helm chart for node application.
  A HorizontalPodAutoscaler (HPA) automatically updates a workload resource (such as a Deployment or StatefulSet), with the aim of automatically scaling the workload to match demand.
  Horizontal scaling means that the response to increased load is to deploy more Pods. 
  HPA is enabled in prod environment by increase and decrease the number of replicas (by updating the Deployment) to maintain an average CPU utilization across all Pods of 50%, minimum 1 instance and maximum 10 instances.
+ 
  # STAGE6
  ## PROMETHEUS AND GRAFANA
  Prometheus is an opensource systems monitoring and alerting tool kit. It collects and stores metrics as time series data. PromQL is the query language can be used to query the metrics.
