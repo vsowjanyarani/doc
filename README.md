@@ -108,10 +108,12 @@ qa-jenkinsJob -
    Helm is the package manager for kubernetes. Helm charts are available in helm repositories.
    ##### Helm Installation
 Refer the following link to install helm on ubuntu server
+
 https://helm.sh/docs/intro/install/
  
   ##### Creating Helm Chart
 Refer the following link for creating helm chart for node application.
+
     https://phoenixnap.com/kb/create-helm-chart
 - created dev-values.yaml ,qa-values.yaml and prod-values.yaml
 - dev-values.yaml file has replicas-1, repository url is node image location in ECR and service type is NodePort with exposed port 3000.
@@ -124,11 +126,13 @@ Refer the following link for creating helm chart for node application.
    The Kubernetes Metrics Server is an aggregator of resource usage data in your cluster, and it is not deployed by default in Amazon EKS clusters. The Metrics Server is commonly used by other Kubernetes add ons, such as the Horizontal Pod Autoscaler or the Kubernetes Dashboard. 
    INSTALLATION:
      Refer the following link
+     
      https://docs.aws.amazon.com/eks/latest/userguide/metrics-server.html
   
  ## CLUSTER AUTOSCALING
  The Kubernetes Cluster Autoscaler automatically adjusts the number of nodes in your cluster when pods fail or are rescheduled onto other nodes.
  Deploying the cluster autoscaler using the folllowing link
+ 
   https://docs.aws.amazon.com/eks/latest/userguide/autoscaling.html
   
  #### Enabling hpa in prod environment
@@ -149,6 +153,7 @@ Refer the following link for creating helm chart for node application.
   #### Installation
   Create a namespace monitoring in eks-cluster and deploy Promethues and grafana using promethushelm repository and grafanahelm repository from helm community.
   Refer the below links
+  
   https://artifacthub.io/packages/helm/prometheus-community/prometheus
   https://artifacthub.io/packages/helm/grafana/grafana
   #### Prometheus SetUp
@@ -176,12 +181,14 @@ Refer the following link for creating helm chart for node application.
    Elasticsearch is a distributed, open-source data source,search and analytics engine built on Apache Lucene and developed in Java.
 #### ElasticSearch installation
    Refer the following link for installation on ubuntu server
+   
        https://linuxize.com/post/how-to-install-elasticsearch-on-ubuntu-20-04/
  ### FLUENT-BIT
  Fluent Bit is a lightweight log processor and forwarder that allows you to collect data and logs from different sources, unify them, and send them to multiple destinations.
    Here fluentbit stores the log data to elasticsearch data source. fulent-bit runs as a deamonset in kubernetes cluster.so that it can collect log information from every node
  #### Fluent-Bit Installation:
   Refer the following link for installation on ubuntu server
+  
   https://docs.fluentbit.io/manual/v/1.3/installation/kubernetes
   
  ### KIBANA
@@ -189,9 +196,11 @@ Refer the following link for creating helm chart for node application.
  kibana takes the log data from elasticsearch and visualized in kibana web UI.
  #### Kibana Installation:
  Refer the following link for installation on ubuntu server
+ 
  https://phoenixnap.com/kb/how-to-install-elk-stack-on-ubuntu
  
  ### Enable Basic Authentication on EFK Stack
  This enables it to restrict access to various resources within the cluster. To access these resources when authentication is enabled, a user has to prove their identity using username/passwords.
  Refer the following link
+ 
  https://kifarunix.com/how-to-enable-basic-authentication-on-elk-stack/
