@@ -75,17 +75,18 @@
 ## DOCKER
    Dockerfile is to building image for for node project and run it as a container.
    
-       . ubuntu is base image for dockerfile
+   - ubuntu is base image for dockerfile
        
-       . nodejs application image is exposed to port 3000
+   - nodejs application image is exposed to port 3000
        
        
  ![dockerfile](https://github.com/vsowjanyarani/doc/blob/main/docker.png?raw=true"dockerfile")
      
    ### DockerInstallation
-    Follow the below link to install docker on ubuntu server. Docker version is 20.10.17 .
+    
+   Follow the below link to install docker on ubuntu server. Docker version is 20.10.17 
                 
-   https://docs.docker.com/engine/install/ubuntu/ 
+      https://docs.docker.com/engine/install/ubuntu/ 
                 
  git url to see dockerfile - https://github.com/vsowjanyarani/sowji-devops.git
  
