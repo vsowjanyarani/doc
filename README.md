@@ -38,6 +38,7 @@
       - vars.tf file has all environment variables used in ekscluster.tf
    ### Commands used to run the terraform code
    - terraform init :- Initialize the terraform working directory .
+   
     - terraform plan :- To view the plan of the terraform code before executing.
     - terraform apply :- To run the terraform code.
     - terraform destroy :- To destroy the infrastructure
