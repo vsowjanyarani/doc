@@ -105,16 +105,22 @@
   Refer the follwing link to install jenkins  
   
      https://www.jenkins.io/doc/book/installing/linux/
- ### ContinousIntegration and ContinousDeployment (CI-CD):
+ ### ContinousIntegration And ContinousDeployment (CI-CD):
  ##### JenkinsPipelinejobs-
  dev-jenkinsJob -  
-          This job has pipeline script to build an image and run the image,upload the image to ECR,integrated git with jenkins for trigger automaticaly when there is merge happens to main branch,Integrated to slack channel to get alert on job fails and deployed 1 replica with helm install and dev-values.yaml file.
-          
+ - This job has pipeline script to build an image and run the image,upload the image to ECR and deployed 1 replicavusing helm chart in dev environment.
+ - Git integration done with jenkins to trigger automaticaly when there is merge happens to main branch. 
+ - Slack Integration done to send slack alerts to slack channel on job fails. 
+
  qa-jenkinsJob -  
-          This job has pipeline script which will pull node image that created in dev-jenkinsjob from ECR ,attaching new tag and upload the image to ECR. Integrated to git with jenkins to trigger automaticaly when there is merge happens to main branch ,integrated to slack channel to get alert on job fails and deployed 1 replica with helm install and qa-values.yaml file.
+ - This job has pipeline script which will pull node image that created in dev-jenkinsjob from ECR , attaching new tag and upload the image to ECR and deployed 1 replica using helm chart in qa environment.
+ - Git integration done with jenkins to trigger automaticaly when there is merge happens to main branch. 
+ - Slack Integration done to send slack alerts to slack channel on job fails.  
          
  prod-jenkinJob -  
-         This job has pipeline script which will pull node image that created in qa environment from ECR and attaching new tag and upload the image to ECR. Integrated git with jenkins to trigger automaticaly when there is merge happens to main branch,integrated to slack channel to get alert on job fails and and deployed 2 replicas with helm install and prod-values.yaml file.
+ - This job has pipeline script which will pull node image that tagged in qa-jenkinsjob from ECR , attaching new tag and upload the image to ECR and deployed 2 replicas using helm chart in prod environment.
+ - Git integration done with jenkins to trigger automaticaly when there is merge happens to main branch. 
+ - Slack Integration done to send slack alerts to slack channel on job fails.  
 
 ![jenkins](https://github.com/vsowjanyarani/doc/blob/main/jenkinsjob3.png?raw=true"jenkinsjobs")
 
