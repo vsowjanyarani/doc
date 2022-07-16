@@ -19,9 +19,10 @@
 ## PRE-REQUISITES
  - one ubuntu virtual machine on aws of type t3-medium
  - one ubuntu virtual machine on aws of type t2-medium for installing elasticsearch and kibana
- - 
+ 
 ## SOURCE CODE MANAGEMENT
-  GIthub offers the distributed version control and source code management (SCM) functionality of Git.For every change made to git repo , PR will raised and team lead has to review it and merge into it.
+  GIthub offers the distributed version control and source code management (SCM) functionality of Git.
+  For every change made to git repo , PR will raised and team lead has to review it and merge into main branch.,,,
 
    ![pullrequestmerge](https://github.com/vsowjanyarani/doc/blob/main/git-pr.png?raw=true"sourcecodemanagement")
    
