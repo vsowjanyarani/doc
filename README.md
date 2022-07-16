@@ -14,55 +14,55 @@
  - Continuous integration tools-  Jenkins
  - Configuration Management tools - Ansible
  - Monitoring Tools - Prometheus,Grafana
- - Orchestration tools - Kubernetes
- - logs monitoring tools - Elasticsearch,Fluent-Bit,Kibana
+ - Orchestration tools - Kubernetes 
  
 ## PRE-REQUISITES
  - one ubuntu virtual machine on aws of type t3-medium
  - one ubuntu virtual machine on aws of type t2-medium for installing elasticsearch and kibana
-      #                                           STAGE1
-      
-## TERRAFORM
+ - 
+## SOURCE CODE MANAGEMENT
+  GIthub offers the distributed version control and source code management (SCM) functionality of Git.For every change made to git repo , PR will raised and team lead has to review it and merge into it.
+
+   ![pullrequestmerge](https://github.com/vsowjanyarani/doc/blob/main/git-pr.png?raw=true"sourcecodemanagement")
+   
+  ### Git Repositories-
+   https://github.com/vsowjanyarani/aatmani-project - the sourcecode of the project available in this repository.
+   https://github.com/vsowjanyarani/sowji-devops.git - all the files related to devops automation are available in this repository.
+    
+## INFRASTRUCTURE PROVISIONING     
+### TERRAFORM
 
  HashicropTerraform is an infrasture as code tool that lets us define both cloud and on-premise resources in human-readable configure files using hcl language. 
  one vpc,2subnets,eks-cluster with one nodegroup  (minimum 1 spot instance and maximum 5 spot instances) are provisioned using terraform.
  
  ![infra](https://github.com/vsowjanyarani/doc/blob/main/Untitled%20Diagram.drawio.png?raw=true"Infra")
  
-  ### Install terraform
+  #### Install terraform
   Refer the following link to download and install terraform in ubuntu server.
   
       https://www.terraform.io/downloads
  
-   ### Provisioning The Infrastructure 
+   #### Provisioning The Infrastructure 
    -  terraform working directory
        -  main.tf file has terraform code to create a vpc, one public subnet and one private subnet
        -  variables.tf has all environment variables used in main.tf file 
    - terraform-eks working directory
       - ekscluster.tf has terraform code to create iam roles ,eks cluster and one worker nodegroup with minimun 1 spot machine and max 5 spot machines
       - vars.tf file has all environment variables used in ekscluster.tf
-   ### Commands used to run the terraform code
+   #### Commands used to run the terraform code
    
    - terraform init :-    Initialize the terraform working directory .
    - terraform plan :-    To view the plan of the terraform code before executing.
    - terraform apply :-   To run the terraform code.
    - terraform destroy:-  To destroy the infrastructure
     
-## AWS-CLI INSTALLATION
+### AWS-CLI INSTALLATION
    Refer the following link for Installing aws-cli on ubuntu server
    
     https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html
- ## SOURCE CODE MANAGEMENT
-  GIthub offers the distributed version control and source code management (SCM) functionality of Git.For every change made to git repo , PR will raised and team lead has to review it and merge into it.
 
-   ![pullrequestmerge](https://github.com/vsowjanyarani/doc/blob/main/git-pr.png?raw=true"sourcecodemanagement")
-  ### Git Repositories-
-   https://github.com/vsowjanyarani/aatmani-project - the sourcecode of the project available in this repository.
-   https://github.com/vsowjanyarani/sowji-devops.git - all the files related to devops automation are available in this repository.
-
-   #                                             STAGE2
    
-   ## kUBECTL INSTALLATION
+   ### kUBECTL INSTALLATION
  Refer the following link to  install kubectl on ubuntu server.
  
     https://docs.aws.amazon.com/eks/latest/userguide/install-kubectl.html  
@@ -74,9 +74,8 @@
       3. prod
     ![dev-qa-prod](https://github.com/vsowjanyarani/doc/blob/main/dev-qa-prod.png?raw=true"dev-qa-prod")
     
-  #                                               STAGE3
-  
-## DOCKER
+# BUILD AND DEPLOYMENT  
+### DOCKER
  Docker is an open source platform that enables developers to build, deploy, run, update and manage containers.Docker is more light weight virtualiazation technology.
  A container is a runnable instance of an image.A Docker image is an immutable (unchangeable) file that contains the source code, libraries, dependencies, tools, and other files needed for an application to run.
  
@@ -89,25 +88,23 @@
        
  ![dockerfile](https://github.com/vsowjanyarani/doc/blob/main/docker.png?raw=true"dockerfile")
      
-   ### DockerInstallation
+   #### DockerInstallation
     
    Follow the below link to install docker on ubuntu server. Docker version is 20.10.17 
                 
       https://docs.docker.com/engine/install/ubuntu/ 
                 
  git url to see dockerfile - https://github.com/vsowjanyarani/sowji-devops.git
-  
-   #                                                  STAGE4
    
  
-## JENKINS
+### JENKINS
  The leading open source automation server, Jenkins provides hundreds of plugins to support building, deploying and automating any project
- ### jenkinsInstallation:
+ #### jenkinsInstallation:
   Refer the follwing link to install jenkins  
   
      https://www.jenkins.io/doc/book/installing/linux/
- ### ContinousIntegration And ContinousDeployment (CI-CD):
- ##### JenkinsPipelinejobs-
+     
+ #### JenkinsPipelinejobs-
  dev-jenkinsJob -  
  - This job has pipeline script to build an image and run the image,upload the image to ECR and deployed 1 replicavusing helm chart in dev environment.
  - Git integration done with jenkins to trigger automaticaly when there is merge happens to main branch. 
@@ -125,13 +122,11 @@
 
 ![jenkins](https://github.com/vsowjanyarani/doc/blob/main/jenkinsjob3.png?raw=true"jenkinsjobs")
 
-
-   #                                                   STAGE5
    
-## KUBERNETES
+### KUBERNETES
   Kubernetes is a portable, extensible, open source platform for managing containerized workloads and services.
   Containers are a good way to bundle and run your applications. In a production environment, you need to manage the containers that run the applications and ensure that there is no downtime. For example, if a container goes down, another container needs to start.
-  ### HELM
+  #### HELM
    Helm is the package manager for kubernetes. Helm charts are available in helm repositories.
    ##### Helm Installation
    Refer the following link to install helm on ubuntu server
@@ -153,16 +148,16 @@ Refer the following link for creating helm chart for node application.
 - 3 classic load balancers got created in each environment
 
 ![helmchart](https://github.com/vsowjanyarani/doc/blob/main/Untitled%20Diagram.drawio%20(1).png?raw=true"helmchart")
+## AUTOSCALING
 
-
-## METRICSERVER
+### METRICSERVER
    The Kubernetes Metrics Server is an aggregator of resource usage data in your cluster, and it is not deployed by default in Amazon EKS clusters. The Metrics Server is commonly used by other Kubernetes add ons, such as the Horizontal Pod Autoscaler or the Kubernetes Dashboard. 
    INSTALLATION:
      Refer the following link
      
        https://docs.aws.amazon.com/eks/latest/userguide/metrics-server.html
   
- ## CLUSTER AUTOSCALING
+ ### CLUSTER AUTOSCALING
  The Kubernetes Cluster Autoscaler automatically adjusts the number of nodes in your cluster when pods fail or are rescheduled onto other nodes.
  Deploying the cluster autoscaler using the folllowing link
  
@@ -173,9 +168,9 @@ Refer the following link for creating helm chart for node application.
  Horizontal scaling means that the response to increased load is to deploy more Pods. 
  HPA is enabled in prod environment by increase and decrease the number of replicas (by updating the Deployment) to maintain an average CPU utilization across all Pods of 50%, minimum 1 instance and maximum 10 instances.
  
- #                                                    STAGE6
+ ## MONITORING
  
- ## PROMETHEUS AND GRAFANA
+ ### PROMETHEUS AND GRAFANA
  Prometheus is an opensource systems monitoring and alerting tool kit. It collects and stores metrics as time series data. PromQL is the query language can be used to query the metrics.
  
  Grafana is multi-platform open source and allows to visualize the data stored in Prometheus (and other sources). Grafana provides charts,graphs,alerts of the application when connected to supported datasource.
@@ -207,10 +202,8 @@ Refer the following link for creating helm chart for node application.
  - setup logindetails for grafana
  - integrate the prometheus to grafana by creating datasource with promethues url 
  - create a dashboard using existing prometheus import code.
-  #                                                  STAGE7
   
- ## KUBERNETES LOGGING
-#### ELASTICSEARCH ,FLUENT-BIT AND KIBANA (EFK)
+ ## LOG STREAMING - ELASTICSEARCH ,FLUENT-BIT AND KIBANA (EFK)
    Securely and reliably search, analyze, and visualize your data.
    
    ![efk](https://github.com/vsowjanyarani/doc/blob/main/efk.png?raw=true:"EFK")
