@@ -77,7 +77,8 @@
   #                                               STAGE3
   
 ## DOCKER
- Docker is an open source platform that enables developers to build, deploy, run, update and manage containers—standardized, executable components that combine application source code with the operating system (OS) libraries and dependencies required to run that code in any environment.
+ Docker is an open source platform that enables developers to build, deploy, run, update and manage containers.Docker is more light weight virtualiazation technology.
+ A container is a runnable instance of an image.A Docker image is an immutable (unchangeable) file that contains the source code, libraries, dependencies, tools, and other files needed for an application to run.
  
    Dockerfile is to building image for for node project and run it as a container.
    
