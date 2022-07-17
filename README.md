@@ -184,10 +184,6 @@ Refer the following link for creating helm chart for node application.
  Grafana is multi-platform open source and allows to visualize the data stored in Prometheus (and other sources). Grafana provides charts,graphs,alerts of the application when connected to supported datasource.
  ![prom](https://github.com/vsowjanyarani/doc/blob/main/prome.png?raw=true:"prometheus")
  
-  #### Components Used In Prometheus Server
-  NodeExporter -its a deamonset ,it runs on every node in the eks cluster and stores metrics of the node in the prometheus server database.
-  
-  AlertManager- it will handle the alerts rules.
   #### Installation
   Create a namespace monitoring in eks-cluster using kubectl and deploy Promethues and grafana using prometheushelm repository and grafanahelm repository from helm community on server1
   Refer the below links
@@ -196,6 +192,11 @@ Refer the following link for creating helm chart for node application.
     
   
     https://artifacthub.io/packages/helm/grafana/grafana
+ 
+  #### Components Used In Prometheus Server
+  NodeExporter -its a deamonset ,it runs on every node in the eks cluster and stores metrics of the node in the prometheus server database.
+  
+  AlertManager- it will handle the alerts rules.
     
   #### Prometheus SetUp
   Step 1: Create alerting rules in Prometheus
