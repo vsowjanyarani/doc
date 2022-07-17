@@ -17,8 +17,8 @@
  - Orchestration tools - Kubernetes 
  
 ## PRE-REQUISITES
- - one ubuntu virtual machine on aws of type t3-medium
- - one ubuntu virtual machine on aws of type t2-medium for installing elasticsearch and kibana
+ - #### SERVER1 - one ubuntu virtual machine on aws of type t3-medium
+ - #### SERVER2 - one ubuntu virtual machine on aws of type t2-medium for installing elasticsearch and kibana
  
 ## SOURCE CODE MANAGEMENT
   GIthub offers the distributed version control and source code management (SCM) functionality of Git.
