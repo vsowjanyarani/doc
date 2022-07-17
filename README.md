@@ -44,7 +44,7 @@ One vpc,2subnets,eks-cluster with one nodegroup  (minimum 1 spot instance and ma
   
       https://www.terraform.io/downloads
  
-   ##### Directories i created to provision infrastructure
+   ##### Directories created to provision infrastructure
    -  terraform working directory
        -  main.tf file has terraform code to create a vpc, one public subnet and one private subnet
        -  variables.tf has all environment variables used in main.tf file 
