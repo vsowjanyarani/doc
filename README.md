@@ -31,7 +31,7 @@
    https://github.com/vsowjanyarani/sowji-devops.git - all the files related to devops automation are available in this repository.
     
 ## INFRASTRUCTURE PROVISIONING 
-One vpc,2subnets,eks-cluster with one nodegroup  (minimum 1 spot instance and maximum 5 spot instances) are provisioned using terraform. Tool used in provisioning of infrastructure is terrafrom.
+One vpc,2subnets,eks-cluster with one nodegroup  (minimum 1 spot instance and maximum 5 spot instances) are provisioned using terraform. Tool used for provisioning of infrastructure is terrafrom.
     
 #### TERRAFORM
 
