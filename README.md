@@ -69,8 +69,8 @@ One vpc,2subnets,eks-cluster with one nodegroup  (minimum 1 spot instance and ma
  
     https://docs.aws.amazon.com/eks/latest/userguide/install-kubectl.html  
   
- ### Namespaces in eks-cluster
-   3 namespaces for 3 diffirent environments are created
+ ### Namespaces in eks-cluster 
+   3 namespaces for 3 diffirent environments are created using kubectl
       1. dev
       2. qa
       3. prod
@@ -100,6 +100,8 @@ One vpc,2subnets,eks-cluster with one nodegroup  (minimum 1 spot instance and ma
    
  git url to see dockerfile - https://github.com/vsowjanyarani/sowji-devops.git
  
+  After creation of image,image got pushed to ECR(AMAZON ELASTIC CONTAINER REGISTRY)
+ 
    ### KUBERNETES
   Kubernetes is a portable, extensible, open source platform for managing containerized workloads and services.
   Containers are a good way to bundle and run your applications. In a production environment, you need to manage the containers that run the applications and ensure that there is no downtime. For example, if a container goes down, another container needs to start.
@@ -117,14 +119,15 @@ Refer the following link for creating helm chart for node application.
 
     https://phoenixnap.com/kb/create-helm-chart
   
-- created dev-values.yaml ,qa-values.yaml and prod-values.yaml 
+- create dev-values.yaml ,qa-values.yaml and prod-values.yaml files
 
 - dev-values.yaml file has replicas-1, repository url is node image location in ECR and service type is NodePort with exposed port 3000
 
 - qa-values.yaml file has replicas-1, repository url is node image location in ECR and service type is NodePort with exposed port 3000
 
 - prod-values.yaml file has replicas-2, repository url is node image location in ECR and service type is NodePort with exposed port 3000
-- 3 classic load balancers got created in each environment
+
+- 3 classic load balancers got created in each environment after installing nodejs apllication helm chart
 
 ![helmchart](https://github.com/vsowjanyarani/doc/blob/main/Untitled%20Diagram.drawio%20(1).png?raw=true"helmchart")
  
@@ -186,7 +189,7 @@ Refer the following link for creating helm chart for node application.
   
   AlertManager- it will handle the alerts rules.
   #### Installation
-  Create a namespace monitoring in eks-cluster and deploy Promethues and grafana using promethushelm repository and grafanahelm repository from helm community.
+  Create a namespace monitoring in eks-cluster using kubectl and deploy Promethues and grafana using prometheushelm repository and grafanahelm repository from helm community on server1
   Refer the below links
   
     https://artifacthub.io/packages/helm/prometheus-community/prometheus
@@ -217,15 +220,17 @@ Refer the following link for creating helm chart for node application.
  ### ELASTICSEARCH
    Elasticsearch is a distributed, open-source data source,search and analytics engine built on Apache Lucene and developed in Java.
 #### ElasticSearch installation
-   Refer the following link for installation on ubuntu server
+     
+   Refer the following link for installation on ubuntu server - sever2
    
       https://linuxize.com/post/how-to-install-elasticsearch-on-ubuntu-20-04/
+      
        
  ### FLUENT-BIT
  Fluent Bit is a lightweight log processor and forwarder that allows you to collect data and logs from different sources, unify them, and send them to multiple destinations.
    Here fluentbit stores the log data to elasticsearch data source. fulent-bit runs as a deamonset in kubernetes cluster.so that it can collect log information from every node
  #### Fluent-Bit Installation:
-  Refer the following link for installation on ubuntu server
+  Refer the following link for installation on ubuntu server - server1
   
     https://docs.fluentbit.io/manual/v/1.3/installation/kubernetes
   
@@ -233,7 +238,8 @@ Refer the following link for creating helm chart for node application.
  Kibana is a data visualization and exploration tool used for log and time-series analytics, application monitoring.
  kibana takes the log data from elasticsearch and visualized in kibana web UI.
  #### Kibana Installation:
- Refer the following link for installation on ubuntu server
+ 
+ Refer the following link for installation on ubuntu server - server2
  
     https://phoenixnap.com/kb/how-to-install-elk-stack-on-ubuntu
  
