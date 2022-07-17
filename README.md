@@ -17,8 +17,8 @@
  - Orchestration tools - Kubernetes 
  
 ## PRE-REQUISITES
- - #### SERVER1 - one ubuntu virtual machine on aws of type t3-medium
- - #### SERVER2 - one ubuntu virtual machine on aws of type t2-medium for installing elasticsearch and kibana
+ - #### JUMPBOX - one ubuntu virtual machine on aws of type t3-medium
+ - #### EK-SERVER- one ubuntu virtual machine on aws of type t2-medium for installing elasticsearch and kibana
  
 # SOURCE CODE MANAGEMENT
   GIthub offers the distributed version control and source code management (SCM) functionality of Git.
@@ -40,7 +40,7 @@ One vpc,2subnets,eks-cluster with one nodegroup  (minimum 1 spot instance and ma
  ![infra](https://github.com/vsowjanyarani/doc/blob/main/Untitled%20Diagram.drawio.png?raw=true"Infra")
  
   ##### Install terraform
-  Refer the following link to download and install terraform in ubuntu server.
+  Refer the following link to download and install terraform in jumpbox.
   
       https://www.terraform.io/downloads
  
@@ -58,13 +58,13 @@ One vpc,2subnets,eks-cluster with one nodegroup  (minimum 1 spot instance and ma
    - terraform apply :-   To run the terraform code.
    - terraform destroy:-  To destroy the infrastructure
     
-#### AWS-CLI INSTALLATION ON SERVER1
+#### AWS-CLI INSTALLATION ON JUMPBOX
    Refer the following link for Installing aws-cli on ubuntu server
    
     https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html
 
    
-   #### kUBECTL INSTALLATION ON SERVER1
+   #### kUBECTL INSTALLATION ON JUMPBOX
  Refer the following link to  install kubectl on ubuntu server.
  
     https://docs.aws.amazon.com/eks/latest/userguide/install-kubectl.html  
@@ -83,7 +83,7 @@ One vpc,2subnets,eks-cluster with one nodegroup  (minimum 1 spot instance and ma
  A container is a runnable instance of an image.A Docker image is an immutable (unchangeable) file that contains the source code, libraries, dependencies, tools, and other files needed for an application to run.
  #### DockerInstallation
     
-   Follow the below link to install docker on ubuntu server. Docker version is 20.10.17 
+   Follow the below link to install docker on jumpbox. Docker version is 20.10.17 
                 
       https://docs.docker.com/engine/install/ubuntu/ 
                 
@@ -110,7 +110,7 @@ One vpc,2subnets,eks-cluster with one nodegroup  (minimum 1 spot instance and ma
    Helm is the package manager for kubernetes. Helm charts are available in helm repositories.
    
    ##### Helm Installation
-   Refer the following link to install helm on ubuntu server
+   Refer the following link to install helm on jumpbox
 
      https://helm.sh/docs/intro/install/
  
@@ -134,7 +134,7 @@ Refer the following link for creating helm chart for node application.
 ### JENKINS
  The leading open source automation server, Jenkins provides hundreds of plugins to support building, deploying and automating any project
  #### jenkinsInstallation:
-  Refer the follwing link to install jenkins  
+  Refer the follwing link to install jenkins on jumpbox
   
      https://www.jenkins.io/doc/book/installing/linux/
      
@@ -160,8 +160,8 @@ Refer the following link for creating helm chart for node application.
 
 #### METRICSERVER
    The Kubernetes Metrics Server is an aggregator of resource usage data in your cluster, and it is not deployed by default in Amazon EKS clusters. The Metrics Server is commonly used by other Kubernetes add ons, such as the Horizontal Pod Autoscaler or the Kubernetes Dashboard. 
-   INSTALLATION:
-     Refer the following link
+   
+     Refer the following link for deploying metric server on cluster
      
        https://docs.aws.amazon.com/eks/latest/userguide/metrics-server.html
   
@@ -185,7 +185,7 @@ Refer the following link for creating helm chart for node application.
  ![prom](https://github.com/vsowjanyarani/doc/blob/main/prome.png?raw=true:"prometheus")
  
   #### Installation
-  Create a namespace monitoring in eks-cluster using kubectl and deploy Promethues and grafana using prometheushelm repository and grafanahelm repository from helm community on server1
+  Create a namespace monitoring in eks-cluster using kubectl and deploy Promethues and grafana using prometheushelm repository and grafanahelm repository from helm community on jumpbox
   Refer the below links
   
     https://artifacthub.io/packages/helm/prometheus-community/prometheus
@@ -222,7 +222,7 @@ Refer the following link for creating helm chart for node application.
    Elasticsearch is a distributed, open-source data source,search and analytics engine built on Apache Lucene and developed in Java.
 #### ElasticSearch installation
      
-   Refer the following link for installation on ubuntu server - sever2
+   Refer the following link for installation on ek-server
    
       https://linuxize.com/post/how-to-install-elasticsearch-on-ubuntu-20-04/
       
@@ -231,7 +231,7 @@ Refer the following link for creating helm chart for node application.
  Fluent Bit is a lightweight log processor and forwarder that allows you to collect data and logs from different sources, unify them, and send them to multiple destinations.
    Here fluentbit stores the log data to elasticsearch data source. fulent-bit runs as a deamonset in kubernetes cluster.so that it can collect log information from every node
  #### Fluent-Bit Installation:
-  Refer the following link for installation on ubuntu server - server1
+  Refer the following link for installation on jumpbox
   
     https://docs.fluentbit.io/manual/v/1.3/installation/kubernetes
   
@@ -240,7 +240,7 @@ Refer the following link for creating helm chart for node application.
  kibana takes the log data from elasticsearch and visualized in kibana web UI.
  #### Kibana Installation:
  
- Refer the following link for installation on ubuntu server - server2
+ Refer the following link for installation on ubuntu server - ek-server
  
     https://phoenixnap.com/kb/how-to-install-elk-stack-on-ubuntu
  
