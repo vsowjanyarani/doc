@@ -20,7 +20,7 @@
  - #### SERVER1 - one ubuntu virtual machine on aws of type t3-medium
  - #### SERVER2 - one ubuntu virtual machine on aws of type t2-medium for installing elasticsearch and kibana
  
-## SOURCE CODE MANAGEMENT
+# SOURCE CODE MANAGEMENT
   GIthub offers the distributed version control and source code management (SCM) functionality of Git.
   For every change made to git repo , PR will raised and team lead has to review it and merge into main branch.,,,
 
@@ -30,7 +30,7 @@
    https://github.com/vsowjanyarani/aatmani-project - the sourcecode of the project available in this repository.
    https://github.com/vsowjanyarani/sowji-devops.git - all the files related to devops automation are available in this repository.
     
-## INFRASTRUCTURE PROVISIONING 
+# INFRASTRUCTURE PROVISIONING 
 One vpc,2subnets,eks-cluster with one nodegroup  (minimum 1 spot instance and maximum 5 spot instances) are provisioned using terraform. Tool used for provisioning of infrastructure is terrafrom.
     
 #### TERRAFORM
