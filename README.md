@@ -30,11 +30,11 @@
    https://github.com/vsowjanyarani/aatmani-project - the sourcecode of the project available in this repository.
    https://github.com/vsowjanyarani/sowji-devops.git - all the files related to devops automation are available in this repository.
     
-## INFRASTRUCTURE PROVISIONING     
+## INFRASTRUCTURE PROVISIONING 
+    One vpc,2subnets,eks-cluster with one nodegroup  (minimum 1 spot instance and maximum 5 spot instances) are provisioned using terraform. Tool used in provisioning of infrastructure is terrafrom.
 ### TERRAFORM
 
- HashicropTerraform is an infrasture as code tool that lets us define both cloud and on-premise resources in human-readable configure files using hcl language. 
- one vpc,2subnets,eks-cluster with one nodegroup  (minimum 1 spot instance and maximum 5 spot instances) are provisioned using terraform.
+ HashicropTerraform is an infrasture as code tool to create on cloud service in human-readable configure files using hcl language. It allows use to change and manage the infrastructure in a safe,consistent and repeatable way.
  
  ![infra](https://github.com/vsowjanyarani/doc/blob/main/Untitled%20Diagram.drawio.png?raw=true"Infra")
  
@@ -43,7 +43,7 @@
   
       https://www.terraform.io/downloads
  
-   #### Provisioning The Infrastructure 
+   #### Directories i created to provision infrastructure
    -  terraform working directory
        -  main.tf file has terraform code to create a vpc, one public subnet and one private subnet
        -  variables.tf has all environment variables used in main.tf file 
@@ -57,28 +57,35 @@
    - terraform apply :-   To run the terraform code.
    - terraform destroy:-  To destroy the infrastructure
     
-### AWS-CLI INSTALLATION
+### AWS-CLI INSTALLATION ON SERVER1
    Refer the following link for Installing aws-cli on ubuntu server
    
     https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html
 
    
-   ### kUBECTL INSTALLATION
+   ### kUBECTL INSTALLATION ON SERVER1
  Refer the following link to  install kubectl on ubuntu server.
  
     https://docs.aws.amazon.com/eks/latest/userguide/install-kubectl.html  
   
  ### Namespaces in eks-cluster
-   3 namespaces for 3 diffirent environments
+   3 namespaces for 3 diffirent environments are created
       1. dev
       2. qa
       3. prod
     ![dev-qa-prod](https://github.com/vsowjanyarani/doc/blob/main/dev-qa-prod.png?raw=true"dev-qa-prod")
     
 # BUILD AND DEPLOYMENT  
+  For build and deployment process ,docker is used to build an image , jenkins is used for performing ci-cd and helm chart, kubernertes used for deploying application in kubernetes cluster.
 ### DOCKER
  Docker is an open source platform that enables developers to build, deploy, run, update and manage containers.Docker is more light weight virtualiazation technology.
  A container is a runnable instance of an image.A Docker image is an immutable (unchangeable) file that contains the source code, libraries, dependencies, tools, and other files needed for an application to run.
+ #### DockerInstallation
+    
+   Follow the below link to install docker on ubuntu server. Docker version is 20.10.17 
+                
+      https://docs.docker.com/engine/install/ubuntu/ 
+                
  
    Dockerfile is to building image for for node project and run it as a container.
    
@@ -89,14 +96,36 @@
        
  ![dockerfile](https://github.com/vsowjanyarani/doc/blob/main/docker.png?raw=true"dockerfile")
      
-   #### DockerInstallation
-    
-   Follow the below link to install docker on ubuntu server. Docker version is 20.10.17 
-                
-      https://docs.docker.com/engine/install/ubuntu/ 
-                
- git url to see dockerfile - https://github.com/vsowjanyarani/sowji-devops.git
    
+ git url to see dockerfile - https://github.com/vsowjanyarani/sowji-devops.git
+ 
+   ### KUBERNETES
+  Kubernetes is a portable, extensible, open source platform for managing containerized workloads and services.
+  Containers are a good way to bundle and run your applications. In a production environment, you need to manage the containers that run the applications and ensure that there is no downtime. For example, if a container goes down, another container needs to start.
+  
+  #### HELM
+   Helm is the package manager for kubernetes. Helm charts are available in helm repositories.
+   
+   ##### Helm Installation
+   Refer the following link to install helm on ubuntu server
+
+     https://helm.sh/docs/intro/install/
+ 
+  ##### Creating Helm Chart
+Refer the following link for creating helm chart for node application.
+
+    https://phoenixnap.com/kb/create-helm-chart
+  
+- created dev-values.yaml ,qa-values.yaml and prod-values.yaml 
+
+- dev-values.yaml file has replicas-1, repository url is node image location in ECR and service type is NodePort with exposed port 3000
+
+- qa-values.yaml file has replicas-1, repository url is node image location in ECR and service type is NodePort with exposed port 3000
+
+- prod-values.yaml file has replicas-2, repository url is node image location in ECR and service type is NodePort with exposed port 3000
+- 3 classic load balancers got created in each environment
+
+![helmchart](https://github.com/vsowjanyarani/doc/blob/main/Untitled%20Diagram.drawio%20(1).png?raw=true"helmchart")
  
 ### JENKINS
  The leading open source automation server, Jenkins provides hundreds of plugins to support building, deploying and automating any project
@@ -124,31 +153,7 @@
 ![jenkins](https://github.com/vsowjanyarani/doc/blob/main/jenkinsjob3.png?raw=true"jenkinsjobs")
 
    
-### KUBERNETES
-  Kubernetes is a portable, extensible, open source platform for managing containerized workloads and services.
-  Containers are a good way to bundle and run your applications. In a production environment, you need to manage the containers that run the applications and ensure that there is no downtime. For example, if a container goes down, another container needs to start.
-  #### HELM
-   Helm is the package manager for kubernetes. Helm charts are available in helm repositories.
-   ##### Helm Installation
-   Refer the following link to install helm on ubuntu server
 
-     https://helm.sh/docs/intro/install/
- 
-  ##### Creating Helm Chart
-Refer the following link for creating helm chart for node application.
-
-    https://phoenixnap.com/kb/create-helm-chart
-  
-- created dev-values.yaml ,qa-values.yaml and prod-values.yaml 
-
-- dev-values.yaml file has replicas-1, repository url is node image location in ECR and service type is NodePort with exposed port 3000
-
-- qa-values.yaml file has replicas-1, repository url is node image location in ECR and service type is NodePort with exposed port 3000
-
-- prod-values.yaml file has replicas-2, repository url is node image location in ECR and service type is NodePort with exposed port 3000
-- 3 classic load balancers got created in each environment
-
-![helmchart](https://github.com/vsowjanyarani/doc/blob/main/Untitled%20Diagram.drawio%20(1).png?raw=true"helmchart")
 ## AUTOSCALING
 
 ### METRICSERVER
