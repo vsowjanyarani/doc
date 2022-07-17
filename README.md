@@ -31,39 +31,40 @@
    https://github.com/vsowjanyarani/sowji-devops.git - all the files related to devops automation are available in this repository.
     
 ## INFRASTRUCTURE PROVISIONING 
-    One vpc,2subnets,eks-cluster with one nodegroup  (minimum 1 spot instance and maximum 5 spot instances) are provisioned using terraform. Tool used in provisioning of infrastructure is terrafrom.
-### TERRAFORM
+One vpc,2subnets,eks-cluster with one nodegroup  (minimum 1 spot instance and maximum 5 spot instances) are provisioned using terraform. Tool used in provisioning of infrastructure is terrafrom.
+    
+#### TERRAFORM
 
  HashicropTerraform is an infrasture as code tool to create on cloud service in human-readable configure files using hcl language. It allows use to change and manage the infrastructure in a safe,consistent and repeatable way.
  
  ![infra](https://github.com/vsowjanyarani/doc/blob/main/Untitled%20Diagram.drawio.png?raw=true"Infra")
  
-  #### Install terraform
+  ##### Install terraform
   Refer the following link to download and install terraform in ubuntu server.
   
       https://www.terraform.io/downloads
  
-   #### Directories i created to provision infrastructure
+   ##### Directories i created to provision infrastructure
    -  terraform working directory
        -  main.tf file has terraform code to create a vpc, one public subnet and one private subnet
        -  variables.tf has all environment variables used in main.tf file 
    - terraform-eks working directory
       - ekscluster.tf has terraform code to create iam roles ,eks cluster and one worker nodegroup with minimun 1 spot machine and max 5 spot machines
       - vars.tf file has all environment variables used in ekscluster.tf
-   #### Commands used to run the terraform code
+   ##### Commands used to run the terraform code
    
    - terraform init :-    Initialize the terraform working directory .
    - terraform plan :-    To view the plan of the terraform code before executing.
    - terraform apply :-   To run the terraform code.
    - terraform destroy:-  To destroy the infrastructure
     
-### AWS-CLI INSTALLATION ON SERVER1
+#### AWS-CLI INSTALLATION ON SERVER1
    Refer the following link for Installing aws-cli on ubuntu server
    
     https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html
 
    
-   ### kUBECTL INSTALLATION ON SERVER1
+   #### kUBECTL INSTALLATION ON SERVER1
  Refer the following link to  install kubectl on ubuntu server.
  
     https://docs.aws.amazon.com/eks/latest/userguide/install-kubectl.html  
