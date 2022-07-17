@@ -153,29 +153,27 @@ Refer the following link for creating helm chart for node application.
 
 ![jenkins](https://github.com/vsowjanyarani/doc/blob/main/jenkinsjob3.png?raw=true"jenkinsjobs")
 
-   
+# DEPLOYING METRICSERVER , CLUSTER AUTOSCALING AND HPA ENABLING
 
-## AUTOSCALING
-
-### METRICSERVER
+#### METRICSERVER
    The Kubernetes Metrics Server is an aggregator of resource usage data in your cluster, and it is not deployed by default in Amazon EKS clusters. The Metrics Server is commonly used by other Kubernetes add ons, such as the Horizontal Pod Autoscaler or the Kubernetes Dashboard. 
    INSTALLATION:
      Refer the following link
      
        https://docs.aws.amazon.com/eks/latest/userguide/metrics-server.html
   
- ### CLUSTER AUTOSCALING
+ #### CLUSTER AUTOSCALING
  The Kubernetes Cluster Autoscaler automatically adjusts the number of nodes in your cluster when pods fail or are rescheduled onto other nodes.
  Deploying the cluster autoscaler using the folllowing link
  
      https://docs.aws.amazon.com/eks/latest/userguide/autoscaling.html
   
- #### Enabling hpa in prod environment
+ ##### Enabling hpa in prod environment
  A HorizontalPodAutoscaler (HPA) automatically updates a workload resource (such as a Deployment or StatefulSet), with the aim of automatically scaling the workload to match demand.
  Horizontal scaling means that the response to increased load is to deploy more Pods. 
  HPA is enabled in prod environment by increase and decrease the number of replicas (by updating the Deployment) to maintain an average CPU utilization across all Pods of 50%, minimum 1 instance and maximum 10 instances.
  
- ## MONITORING
+ # MONITORING
  
  ### PROMETHEUS AND GRAFANA
  Prometheus is an opensource systems monitoring and alerting tool kit. It collects and stores metrics as time series data. PromQL is the query language can be used to query the metrics.
@@ -210,7 +208,7 @@ Refer the following link for creating helm chart for node application.
  - integrate the prometheus to grafana by creating datasource with promethues url 
  - create a dashboard using existing prometheus import code.
   
- ## LOG STREAMING - ELASTICSEARCH ,FLUENT-BIT AND KIBANA (EFK)
+ # LOG STREAMING - ELASTICSEARCH ,FLUENT-BIT AND KIBANA (EFK)
    Securely and reliably search, analyze, and visualize your data.
    
    ![efk](https://github.com/vsowjanyarani/doc/blob/main/efk.png?raw=true:"EFK")
