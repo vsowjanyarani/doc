@@ -207,8 +207,8 @@ Refer the following link for creating helm chart for node application.
   
   #### Grafana SetUp
  - setup logindetails for grafana
- - integrate the prometheus to grafana by creating datasource with promethues url 
- - create a dashboard using existing prometheus import code.
+ - integrate the prometheus to grafana by adding datasource with promethues url 
+ - created a dashboard using existing prometheus import code.
   
  # LOG STREAMING - ELASTICSEARCH ,FLUENT-BIT AND KIBANA (EFK)
    Securely and reliably search, analyze, and visualize your data.
