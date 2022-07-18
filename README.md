@@ -146,12 +146,10 @@ Refer the following link for creating helm chart for node application.
 
  qa-jenkinsJob -  
  - This job has pipeline script which will pull node image that created in dev-jenkinsjob from ECR , attaching new tag and upload the image to ECR and deployed 1 replica using helm chart in qa environment.
- - Git integration done with jenkins to trigger automaticaly when there is merge happens to main branch. 
  - Slack Integration done to send slack alerts to slack channel on job fails.  
          
  prod-jenkinJob -  
  - This job has pipeline script which will pull node image that tagged in qa-jenkinsjob from ECR , attaching new tag and upload the image to ECR and deployed 2 replicas using helm chart in prod environment.
- - Git integration done with jenkins to trigger automaticaly when there is merge happens to main branch. 
  - Slack Integration done to send slack alerts to slack channel on job fails.  
 
 ![jenkins](https://github.com/vsowjanyarani/doc/blob/main/jenkinsjob3.png?raw=true"jenkinsjobs")
