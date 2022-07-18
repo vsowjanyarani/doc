@@ -127,8 +127,6 @@ Refer the following link for creating helm chart for node application.
 
 - prod-values.yaml file has replicas-2, repository url is node image location in ECR and service type is NodePort with exposed port 3000
 
-- 3 classic load balancers got created in each environment after installing nodejs apllication helm chart
-
 ![helmchart](https://github.com/vsowjanyarani/doc/blob/main/Untitled%20Diagram.drawio%20(1).png?raw=true"helmchart")
  
 ### JENKINS
@@ -141,16 +139,19 @@ Refer the following link for creating helm chart for node application.
  #### JenkinsPipelinejobs-
  dev-jenkinsJob -  
  - This job has pipeline script to build an image and run the image,upload the image to ECR and deployed 1 replicavusing helm chart in dev environment.
- - Git integration done with jenkins to trigger automaticaly when there is merge happens to main branch. 
- - Slack Integration done to send slack alerts to slack channel on job fails. 
-
+ - Git integration done with jenkins to trigger automaticaly when there is merge happens to main branch.
+ - one classic load balancer got created after deploying nodejs application helm chart on dev environment.
+ - Integrated to slack to send alerts to slack channel on job success or failure. 
+ 
  qa-jenkinsJob -  
- - This job has pipeline script which will pull node image that created in dev-jenkinsjob from ECR , attaching new tag and upload the image to ECR and deployed 1 replica using helm chart in qa environment.
- - Slack Integration done to send slack alerts to slack channel on job fails.  
+ - This job has pipeline script which will pull node image from ECR,created in dev-jenkinsjob from ECR , attaching new tag and upload the image to ECR and deployed 1 replica using helm chart in qa environment.
+ - one classic load balancer got created after deploying nodejs application helm chart on qa environment.
+ - Integrated to slack to send alerts to slack channel on job success or failure.  
          
  prod-jenkinJob -  
- - This job has pipeline script which will pull node image that tagged in qa-jenkinsjob from ECR , attaching new tag and upload the image to ECR and deployed 2 replicas using helm chart in prod environment.
- - Slack Integration done to send slack alerts to slack channel on job fails.  
+ - This job has pipeline script which will pull node image from ECR,that tagged in qa-jenkinsjob from ECR , attaching new tag and upload the image to ECR and deployed 2 replicas using helm chart in prod environment.
+ - one classic load balancer got created after deploying nodejs application helm chart on prod environment.
+ - Integrated to slack to send alerts to slack channel on job success or failure. 
 
 ![jenkins](https://github.com/vsowjanyarani/doc/blob/main/jenkinsjob3.png?raw=true"jenkinsjobs")
 
