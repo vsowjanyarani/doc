@@ -35,7 +35,7 @@ One vpc,2subnets,eks-cluster with one nodegroup  (minimum 1 spot instance and ma
     
 #### TERRAFORM
 
- HashicropTerraform is an infrasture as code tool to create on cloud service in human-readable configure files using hcl language. It allows use to change and manage the infrastructure in a safe,consistent and repeatable way.
+ HashicropTerraform is an infrasture as code tool to create on cloud service in human-readable configure files using hcl language. It allows us to change and manage the infrastructure in a safe,consistent and repeatable way.
  
  ![infra](https://github.com/vsowjanyarani/doc/blob/main/Untitled%20Diagram.drawio.png?raw=true"Infra")
  
