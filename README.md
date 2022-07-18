@@ -157,7 +157,7 @@ Refer the following link for creating helm chart for node application.
 # DEPLOYING METRICSERVER , CLUSTER AUTOSCALING AND HPA ENABLING
 
 #### METRICSERVER
-   The Kubernetes Metrics Server is an aggregator of resource usage data in your cluster, and it is not deployed by default in Amazon EKS clusters. The Metrics Server is commonly used by other Kubernetes add ons, such as the Horizontal Pod Autoscaler or the Kubernetes Dashboard. 
+   The metrics-server uses the Kubernetes API to track nodes and pods in your cluster and it is not deployed by default in Amazon EKS clusters. The Metrics Server is commonly used by other Kubernetes add ons, such as the Horizontal Pod Autoscaler or the Kubernetes Dashboard. 
    
      Refer the following link for deploying metric server on cluster
      
